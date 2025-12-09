@@ -18,12 +18,15 @@ import UserProvider from './context/UserContex';
 import {Toaster} from "react-hot-toast"
 
 const App = () => {
+
+   const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <UserProvider>
     <div>
       <Router>
         <Routes>
-          <Route path = "/" element = {<Root />}/>
+          <Route path = "/" element = {!user ? <Login /> : <Navigate to="/dashboard" />}/>
           <Route path = "/login" exact element= {<Login/>} />  
           <Route path = "/signUp" exact element= {<SignUp/>} />  
           <Route path = "/dashboard" exact element= {<Home />} />  
